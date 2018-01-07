@@ -42,6 +42,8 @@
 
             <form method="POST" action="/posts/{{ $post->id }}/comments">
 
+                {{ csrf_field() }}
+
                 <div class="form-group">
 
                     <textarea name="body" placeholder="Add your comments here." class="form-control"></textarea>

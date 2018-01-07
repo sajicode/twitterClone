@@ -11,6 +11,17 @@ class Post extends Model
     public function comments() {        //showing post and comment relationship
 
         return $this->hasMany(Comment::class);
-        
-    }      
+
+    }
+    
+    // public function addComment($body) {     //for form entry into database
+
+    //     Comment::create([
+
+    //         'body' => $body,
+    //         'post_id' => $this->id
+
+    //     ]);
+
+    // }
 }

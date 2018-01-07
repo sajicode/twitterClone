@@ -21,4 +21,4 @@ Route::post('/posts', 'PostsController@store');
 
 Route::get('/posts', 'PostsController@showPosts');
 
-Route::post('/posts/{id}/comments', 'CommentsController@addComment');
+Route::post('/posts/{id}/comments', 'CommentsController@store');
