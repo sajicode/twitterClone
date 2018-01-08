@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['message'];
+    protected $guarded = [];
 
     public function comments() {        //showing post and comment relationship
 

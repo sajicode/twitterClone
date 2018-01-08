@@ -52,6 +52,7 @@ class PostsController extends Controller
     public function details($id) {
 
         $title = "Post Details";
+        
         $post = Post::all()->find($id);
 
         return view('posts.details', compact('title', 'post'));

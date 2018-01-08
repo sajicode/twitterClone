@@ -10,12 +10,15 @@ use App\Comment;
 
 class CommentsController extends Controller
 {
-    public function store(Post $post) {
+    public function store($id) {
+
+        $post = Post::all()->find($id);
 
         Comment::create([
 
-            'body' => request('body'),
-            'post_id' => $post->id
+            'post_id' => $post->id,
+
+            'body' => request('body')
         ]);
 
         return back();

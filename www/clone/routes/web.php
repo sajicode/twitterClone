@@ -22,3 +22,7 @@ Route::post('/posts', 'PostsController@store');
 Route::get('/posts', 'PostsController@showPosts');
 
 Route::post('/posts/{id}/comments', 'CommentsController@store');
+
+Route::get('/reister', 'RegistrationController@create');
+
+Route::get('/login', 'SessionsController@create');
