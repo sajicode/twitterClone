@@ -10,8 +10,10 @@
 
                 @foreach($posts as $post)
 
-                    <p class="blog-post-meta">Author on {{ $post->created_at->format('d-m-Y') }}</p>
+                    <p class="blog-post-meta">{{ $post->user->name }} on {{ $post->created_at->format('d-m-Y') }}</p>
+
                     <p><a href="/details/{{$post->id}}">{{ $post->message}}</a></p>
+
                     <hr>
                     
                 @endforeach

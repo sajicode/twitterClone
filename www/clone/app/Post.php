@@ -14,14 +14,10 @@ class Post extends Model
 
     }
     
-    // public function addComment($body) {     //for form entry into database
+    public function user() {
 
-    //     Comment::create([
-
-    //         'body' => $body,
-    //         'post_id' => $this->id
-
-    //     ]);
-
-    // }
+        return $this->belongsTo(User::class);
+        
+    }
+    
 }

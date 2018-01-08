@@ -7,7 +7,16 @@ use Illuminate\Http\Request;
 use App\Post;
 
 class PostsController extends Controller
+
 {
+
+    //let's prevent guests from viewing post creation page
+    public function __construct() {
+
+        $this->middleware('auth')->except(['index', 'showPosts', 'details']);
+
+    }
+
     public function index() {
 
         $title = "Homepage";
@@ -31,12 +40,17 @@ class PostsController extends Controller
             'message' => 'required|max:280'
         ]);
 
-        //$title = "Posts";
+        auth()->user()->publish(
 
-        Post::create([
+            new Post(request(['message']))
 
-            'message' => request('message')
-        ]);
+        );
+        // Post::create([
+
+        //     'message' => request('message'),
+
+        //     'user_id' => auth()->id()
+        // ]);
 
         return redirect('/posts');
     }
@@ -44,6 +58,7 @@ class PostsController extends Controller
     public function showPosts() {
 
         $title = "Posts";
+        
         $posts = Post::latest()->get();
 
         return view('posts.home', compact('title', 'posts'));
@@ -52,7 +67,7 @@ class PostsController extends Controller
     public function details($id) {
 
         $title = "Post Details";
-        
+
         $post = Post::all()->find($id);
 
         return view('posts.details', compact('title', 'post'));
