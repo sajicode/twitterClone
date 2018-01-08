@@ -2,8 +2,6 @@
 
 @section('content')
 
-    <p>{{ $post_id }}</p>
-    
-    <p>{{ $body }}</p>
+
 
 @endsection
