@@ -6,8 +6,34 @@ use Illuminate\Http\Request;
 
 class SessionsController extends Controller
 {
+
+    //lets make login visible to just guests
+    public function __construct() {
+
+        $this->middleware('guest', ['except' => 'destroy']);
+
+    }
     public function create() {
         
+        $title = "User Login";
+
+        return view('sessions.create', compact('title'));
+
+    }
+
+    public function store() {
+
+        if(auth()->attempt(request(['email', 'password']))); {
+
+            return redirect('/posts');
+
+       }
+        
+        return back()->withErrors([
+
+             'message' => 'Please check your credentials and try again'
+
+        ]);
 
     }
 

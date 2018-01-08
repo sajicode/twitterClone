@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\ValidateUserRegData;
+
 use App\User;
 
 class RegistrationController extends Controller
@@ -16,18 +18,17 @@ class RegistrationController extends Controller
 
     }
 
-    public function store() {
+    public function store(ValidateUserRegData $request) {
 
-        $this->validate(request(), [
+        $user = User::create([
 
-            'name' => 'required',
+            'name' => request('name'),
 
-            'email' => 'required|email',
+            'email' => request('email'),
 
-            'password' => 'required|confirmed'
+            'password' => bcrypt(request('password'))
+
         ]);
-
-        $user = User::create(request(['name', 'email', 'password']));
 
         auth()->login($user);
 
