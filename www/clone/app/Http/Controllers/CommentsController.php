@@ -10,22 +10,18 @@ use App\Comment;
 
 class CommentsController extends Controller
 {
-    public function store() {
+    public function store($id) {
 
-        // $post = Post::all()->find($id);
+        $post = Post::all()->find($id);
 
-        // Comment::create([
+        Comment::create([
 
-        //     'post_id' => $post->id,
+            'post_id' => $post->id,
 
-        //     'body' => request('body')
-        // ]);
+            'body' => request('body'),
 
-        auth()->user()->reply(
-
-            new Comment(request(['body']))
-
-        );
+            'user_id' => auth()->id()
+        ]);
 
         return back();
 
