@@ -10,6 +10,8 @@
 
                 @foreach($posts as $post)
 
+                    <img src="{{ $post->user->userAvatar->filename }}" width="50px" height="50px"/>
+
                     <p class="blog-post-meta">{{ $post->user->name }} | {{ $post->created_at->diffForHumans() }}</p>
 
                     <p><a href="/details/{{$post->id}}">{{ $post->message }}</a></p>

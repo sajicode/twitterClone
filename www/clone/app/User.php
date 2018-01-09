@@ -50,4 +50,10 @@ class User extends Authenticatable
         $this->comments()->save($comment);
 
     }
+
+    public function userAvatar() {
+
+        return $this->hasOne(UserAvatar::class);
+        
+    }
 }

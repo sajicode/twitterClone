@@ -4,7 +4,7 @@
 
     <h1>Post Details</h1>
 
-    <p class="blog-post-meta">Author on {{ $post->created_at->format('d-m-Y') }}</p>
+    <p class="blog-post-meta">{{ $post->user->name }} on {{ $post->created_at->format('d-m-Y') }}</p>
     <p>{{ $post->message }}</p>
 
     <hr>
@@ -19,7 +19,7 @@
 
                     <strong>
 
-                        {{ $comment->created_at->diffForHumans() }}: &nbsp;
+                        {{ $comment->created_at->diffForHumans() }} by {{ $comment->user->name }}: &nbsp;
 
                     </strong>
 

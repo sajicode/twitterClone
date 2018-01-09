@@ -10,7 +10,7 @@ class UserAvatar extends Model
 
     public function user() {           //establish relationship with user
 
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
         
     }
 }
