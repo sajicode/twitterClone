@@ -32,6 +32,6 @@ class RegistrationController extends Controller
 
         auth()->login($user);
 
-        return redirect('/posts');
+        return redirect('/upload');
     }
 }

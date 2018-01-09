@@ -32,3 +32,8 @@ Route::get('/login', 'SessionsController@create');
 Route::post('/login', 'SessionsController@store');
 
 Route::get('/logout', 'SessionsController@destroy');
+
+//file upload routes
+Route::get('/upload', 'UploadsController@create');
+
+Route::post('/upload', 'UploadsController@store');
