@@ -37,3 +37,6 @@ Route::get('/logout', 'SessionsController@destroy');
 Route::get('/upload', 'UploadsController@create');
 
 Route::post('/upload', 'UploadsController@store');
+
+//profile page routes
+Route::get('/profile/{id}', 'ProfileController@create');
