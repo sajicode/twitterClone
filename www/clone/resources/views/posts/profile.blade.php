@@ -9,9 +9,9 @@
 
     <p class="blog-post">Bio: {{ $user->userAvatar->bio }}</p>
 
-    @if(count($posts))
+    {{--  @if(count($posts))  --}}
 
-        @foreach($posts as $post)
+        @foreach($user->posts as $post)
 
             <p>{{ $post->created_at->diffForHumans() }}</p>
 
@@ -21,7 +21,7 @@
             
         @endforeach
 
-    @endif
+    {{--  @endif  --}}
 
 
 @endsection

@@ -23,8 +23,8 @@ class ProfileController extends Controller
 
         $user = User::all()->find($id);
 
-        $posts = Post::all()->find($id);
+        // $posts = Post::all()->find($id);
 
-        return view('posts.profile', compact('title', 'user', 'posts'));
+        return view('posts.profile', compact('title', 'user'));
     }
 }
