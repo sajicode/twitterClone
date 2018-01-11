@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Post;
+
 class SessionsController extends Controller
 {
 
@@ -17,7 +19,21 @@ class SessionsController extends Controller
         
         $title = "User Login";
 
-        return view('sessions.create', compact('title'));
+        $posts = Post::latest();
+
+        if($month = request('month')) {
+
+            $posts->whereMonth('created_at', Carbon::parse($month)->month);
+
+        }
+
+        if($year = request('year')) {
+
+            $posts->whereYear('created_at', $year);
+            
+        }
+
+        $posts = $posts->get();
 
     }
 

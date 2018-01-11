@@ -32,7 +32,33 @@ class PostsController extends Controller
 
         $title = "Create post";
 
-        return view('posts.create', compact('title'));
+        $posts = Post::latest();
+
+        if($month = request('month')) {
+
+            $posts->whereMonth('created_at', Carbon::parse($month)->month);
+
+        }
+
+        if($year = request('year')) {
+
+            $posts->whereYear('created_at', $year);
+            
+        }
+
+        $posts = $posts->get();
+
+        $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+
+            ->groupBy('year', 'month')
+
+            ->orderByRaw('min(created_at) desc')
+
+            ->get()
+
+            ->toArray();
+
+        return view('posts.create', compact('title', 'archives'));
     }
 
     public function store() {
@@ -71,17 +97,7 @@ class PostsController extends Controller
 
         $posts = $posts->get();
 
-        $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
-
-            ->groupBy('year', 'month')
-
-            ->orderByRaw('min(created_at) desc')
-
-            ->get()
-
-            ->toArray();
-
-        return view('posts.home', compact('title', 'posts', 'archives'));
+        return view('posts.home', compact('title', 'posts'));
     }
 
     public function details($id) {
@@ -89,6 +105,22 @@ class PostsController extends Controller
         $title = "Post Details";
 
         $post = Post::all()->find($id);
+
+        $posts = Post::latest();
+
+        if($month = request('month')) {
+
+            $posts->whereMonth('created_at', Carbon::parse($month)->month);
+
+        }
+
+        if($year = request('year')) {
+
+            $posts->whereYear('created_at', $year);
+            
+        }
+
+        $posts = $posts->get();
 
         return view('posts.details', compact('title', 'post'));
     }
