@@ -1,4 +1,4 @@
-@extends('layout.blog-home-master')
+@extends('layout.blog-entry')
 
 @section('content')
 
