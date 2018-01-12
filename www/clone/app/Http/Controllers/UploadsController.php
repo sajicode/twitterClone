@@ -30,7 +30,7 @@ class UploadsController extends Controller
 
         $photo = request('photo');
 
-        $filename = $photo->store('public');
+        $filename = $photo->store('public/images');
 
         UserAvatar::create([
 
